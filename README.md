@@ -12,9 +12,9 @@ First published August 8, 2011 in www.malg.eu/glacial_flows.php
 
 Republished in GitHub, August 1, 2017.
 
-<h1>Glacial flow analysis with open source tools: the case of the Reeves Glacier 
+<h2>Glacial flow analysis with open source tools: the case of the Reeves Glacier 
 	grounding zone, East Antarctica
-</h1>
+</h2>
 
 <p>
 	Mauro Alberti (<a href="mailto:alberti.m65@gmail.com">alberti.m65@gmail.com</a>), 
@@ -417,21 +417,22 @@ to the measurement of glacier velocity using satellite image data. Remote Sensin
 
 <p>
 	An example command line is:
-	<br />
-	<span style="display: block; font-style: italic; margin-left: 20px;">
+
+	<i>
 	imcorr2vectors.py par.txt
-	</span>
+	</i>
 	
 	where par.txt is a parameter file with required input and output information. 
-	<br />Example:
 	
-	<span style="display: block; font-style: italic; margin-left: 20px;">
-	11resize.out  // name of Imcorr file
+	Example:
+	
+	<i>
+	resize.out  // name of Imcorr file
 	<br />14.25  // cell size of analysed raster images
 	<br />536462.625 // x_min: images bottom-left x coordinate
 	<br />1776611.625 // y_max: images top-right y coordinate
 	<br />res.txt // output displacement vectors 
-	</span>
+	</i>
 </p>
 
 <h4>Program output</h4>
@@ -482,16 +483,16 @@ to the measurement of glacier velocity using satellite image data. Remote Sensin
 
 <p>
 	An example command line is:
-	<br />
-	
-	<span style="display: block; font-style: italic; margin-left: 20px;">
+
+	<i>
 	vectors2shapefile.py par.txt
-	</span>
+	</i>
 	
 	where par.txt is a parameter file with required input and output information. 
-	<br />Example:
 	
-	<ol style="margin-left: 20px; font-style: italic;">
+	Example:
+	
+	<ol>
 		<li>input_geovectors.out: text file (output of imcorr2geog.py/vectors_coherence.py)</li>
 		<li>out_shapefile: output displacement vectors (line shapefile)</li>				
 	</ol>
@@ -539,9 +540,9 @@ to the measurement of glacier velocity using satellite image data. Remote Sensin
 <p>
 	An example command line is:
 	
-	<span style="display: block; margin-left: 20px; font-style: italic;">
+	<i>
 		python shapefile2vectors.py vectors.shp vectors.txt				
-	</span>
+	</i>
 	
 	where <em>vectors.shp</em> is the shapefile to convert and <em>vectors.txt</em> is the output 'vector' file.
 </p>
@@ -586,18 +587,18 @@ to the measurement of glacier velocity using satellite image data. Remote Sensin
 <p>
 	An example command line is:
 	
-	<span style="display: block; margin-left: 20px; font-style: italic;">
+	<i>
 		vectors_coherence.py param.txt				
-	</span>
+	</i>
 	
 	where <em>param.txt</em> is a parameter file with required input and output information. 
 	
-	<br />Example:
+	Example:
 	
-	<span style="display: block; margin-left: 20px; font-style: italic;">
+	<i>
 		flow_vectors.txt  // name of input vector file
 		<br />result.txt // output vectors with flow coherence parameters				
-	</span>
+	</i>
 </p>
 
 <h4>Program input</h4>

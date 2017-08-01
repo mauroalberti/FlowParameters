@@ -484,9 +484,7 @@ to the measurement of glacier velocity using satellite image data. Remote Sensin
 <p>
 	An example command line is:
 
-	<i>
-	vectors2shapefile.py par.txt
-	</i>
+	<i>	vectors2shapefile.py par.txt	</i>
 	
 	where par.txt is a parameter file with required input and output information. 
 	
@@ -540,9 +538,7 @@ to the measurement of glacier velocity using satellite image data. Remote Sensin
 <p>
 	An example command line is:
 	
-	<i>
-		python shapefile2vectors.py vectors.shp vectors.txt				
-	</i>
+	<i>		python shapefile2vectors.py vectors.shp vectors.txt	</i>
 	
 	where <em>vectors.shp</em> is the shapefile to convert and <em>vectors.txt</em> is the output 'vector' file.
 </p>
@@ -587,18 +583,16 @@ to the measurement of glacier velocity using satellite image data. Remote Sensin
 <p>
 	An example command line is:
 	
-	<i>
-		vectors_coherence.py param.txt				
-	</i>
+	<i>		vectors_coherence.py param.txt	</i>
 	
 	where <em>param.txt</em> is a parameter file with required input and output information. 
 	
 	Example:
 	
-	<i>
-		flow_vectors.txt  // name of input vector file
-		<br />result.txt // output vectors with flow coherence parameters				
-	</i>
+	<i>		flow_vectors.txt  // name of input vector file</i>
+	
+	<i>	result.txt // output vectors with flow coherence parameters	</i>			
+	
 </p>
 
 <h4>Program input</h4>

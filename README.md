@@ -7,11 +7,11 @@ Glacial flow analysis with open source tools: the case of the Reeves Glacier gro
 
 by Mauro Alberti (alberti.m65@gmail.com) and Debbie Biscaro (debbiemail@libero.it).
 
-www.malg.eu/glacial_flows.php - August 8, 201 - no longer online - 
+First published August 8, 2011 in www.malg.eu/glacial_flows.php
 
 <br />
 
-republished in GitHub
+Republished in GitHub, August 1, 2017.
 
 
 <p><span class="date">1</span> &nbsp;|&nbsp; Posted by <a href="mailto:alberti.m65@gmail.com">mauro</a></p>
@@ -27,7 +27,7 @@ republished in GitHub
 	Debbie Biscaro (<a href="mailto:debbiemail@libero.it">debbiemail@libero.it</a>)
 </p>
 
-<h3>Abstract</h3>
+<h2>Abstract</h2>
 
 <p>We describe a suite of Python tools for the study of glacial flows (and 2D flows in general) that 
 integrates with GIS and Scientific Visualization software. These tools allow to import and clean raw flow data produced by IMCORR, 
@@ -36,16 +36,8 @@ As a case study, we investigate the flows in the grounding zone of the Reeves Gl
 an outlet glacier in the Terra Nova Bay (Victoria Land, East Antarctica) for the period 2001-2003. 
 Flow anomalies are frequent, related to both emerged and sub-glacial obstacles, and to unrecognised factors.
 </p>
-
-
-<ul><h4>Script details</h4>
-	<li><a href="imcorr_conversion.php">IMCORR output conversion</a></li>
-	<li><a href="vectors2shapefile.php">Vector-shapefile conversion</a></li>
-	<li><a href="shapefile2vectors.php">Shapefile-vector conversion</a></li>
-	<li><a href="flow_vector_anomalies.php">Flow vector coherence</a></li>
-</ul>
-
-<h3>1. Introduction</h3>
+		
+<h2>1. Introduction</h2>
 
 <p>Glacier flows in remote regions of the Earth as Antarctica can be investigated thanks to satellite observations. 
 One commonly used method to derive the flows is based on the correlations between subimages in two co-registered images 
@@ -85,13 +77,13 @@ Interested user can refer to the IMCORR web site and to Scambos et al. (1992) fo
 <p>
 We relied on Numpy, a Python library that allows vectorised processing of array data 
 (Langtangen, 2008). Fig. 1 illustrates the suggested processing flow for data importing, cleaning and conversion.
-Result can be imported in GIS using the script <a href="imcorr_conversion.php">imcorr2vectors</a>.
+Result can be imported in GIS using the script <i">imcorr2vectors</i>.
 Since errors are frequently found, result must be cleaned prior to any analysis. Manual cleaning is a time-consuming operation, 
-so we created a tool to automate it. <a href="flow_vector_anomalies.php">vectors_coherence</a> is a script that determines local size and orientation deviations between vectors, 
-in order to highlight potential errors. Resulting layers can be converted to and from shapefiles with <a href="vectors2shapefile.php">vectors2shapefile</a> and
-<a href="shapefile2vectors.php">shapefile2vectors</a> scripts. Validated data can be interpolated with conventional GIS tools applied to the Cartesian components, 
+so we created a tool to automate it. <i>vectors_coherence</i> is a script that determines local size and orientation deviations between vectors, 
+in order to highlight potential errors. Resulting layers can be converted to and from shapefiles with <i>vectors2shapefile</i> and
+<i>shapefile2vectors</i> scripts. Validated data can be interpolated with conventional GIS tools applied to the Cartesian components, 
 in order to obtain a spatially-continuous field. Flow field parameters can be calculated 
-with the <a href="vector_field_params.php">vector_field_par</a> script.
+with the <i>vector_field_par</i> script.
 </p>
 
 <img src="images/fig_01.png" alt="Figure 1" />
@@ -100,17 +92,17 @@ with the <a href="vector_field_params.php">vector_field_par</a> script.
 <h4>2.1. IMCORR output georeferencing and conversion to/from shapefile</h4>
 
 <p>IMCORR raw data require both a preliminary georeferencing processing (since displacement vectors are in graphical coordinates) 
-and data cleaning, due to sub-images mismatch and co-registration errors. <a href="imcorr_conversion.php">imcorr2vectors</a>
+and data cleaning, due to sub-images mismatch and co-registration errors. <i>imcorr2vectors</i>
 reads geographical parameters provided by the user in a parameter file (cell size in geographic units, minimum x value, maximum y value) and creates a 
 georeferenced ASCII file. This last file can be processed by the flow coherence script, or converted to a shapefile with 
-<a href="vectors2shapefile.php">vectors2shapefile</a>, an ASCII-to-shapefile conversion script that outputs a line shapefile. This shapefile 
+<i>vectors2shapefile</i>, an ASCII-to-shapefile conversion script that outputs a line shapefile. This shapefile 
 represents the displacement vectors as segments, with attributes derived from the IMCORR output. 
-A complementary shapefile-to-ASCII script is <a href="shapefile2vectors.php">shapefile2vectors</a>.
+A complementary shapefile-to-ASCII script is <i>shapefile2vectors</i>.
 </p>
 
 <h4>2.2. Raw data cleaning: flow coherence parameters</h4>
 
-<p>We implemented <a href="flow_vector_anomalies.php">vectors_coherence</a>, a flow coherence algorithm to facilitate IMCORR raw data cleaning. 
+<p>We implemented <i>vectors_coherence</i>, a flow coherence algorithm to facilitate IMCORR raw data cleaning. 
 It calculates the difference in vector size and orientation with respect to the mean values of its neighbouring eight vectors, 
 using a 3x3 square kernel. The neighbouring vector values are weighted by the correlation strength provided by IMCORR. 
 Erroneous results should display medium-to-strong deviations from the mean. 
@@ -121,8 +113,8 @@ prior to any automatic deletion is suggested.
 already underwent a cleaning step (the cleaning process can be iterated a few times). A georeferenced file can 
 be converted to a shapefile with the 'vectors2shapefile' script and cleaned within a GIS software by deleting 
 the records with the highest displacement magnitudes. It can be converted again to a <em>vector</em> format with 'shapefile2vectors'.
-The deviation parameters can be calculated again with <a href="flow_vector_anomalies.php">vectors_coherence</a> and a new cleaning step performed. 
-Shapefiles can be clipped to an interest zone, and the <a href="flow_vector_anomalies.php">vectors_coherence</a> script will work properly on the new dataset. 
+The deviation parameters can be calculated again with <i>vectors_coherence</i> and a new cleaning step performed. 
+Shapefiles can be clipped to an interest zone, and the <i>vectors_coherence</i> script will work properly on the new dataset. 
 After some cleaning steps, most or all errors can be considered removed. 
 The next phase is the removal of co-registration errors.
 </p>
@@ -198,7 +190,7 @@ gradient is estimated using central differences within a 3x3 kernel or, for boun
 
 
 
-<p>These parameters can be derived using the <a href="vector_field_params.php">vector_field_par</a> script. Its input are
+<p>These parameters can be derived using the <ai>vector_field_par</i> script. Its input are
 two grids, in ASCII ESRI format and storing the x and y components of the vector field respectively. 
 Output grids represent scalar fields also in the case of curl, since only 
 its magnitude is of interest. The output is in ASCII ESRI format, plus a VTK file storing the original data and all 
@@ -403,4 +395,239 @@ to the measurement of glacier velocity using satellite image data. Remote Sensin
 </li>
 
 </ul>
+
+
+<h2>Script details</h2>
+
+<h3>IMCORR output conversion</h3>	
+
+<p>
+	imcorr2vectors.py converts an IMCORR file from a graphic, gridded space into a 'vector' file, i.e., a tabular, text file 
+	with points and field values in the geographic space.				
+</p>	
+
+<h4>Implementation</h4>
+
+<p>		
+	<i>Language</i>: Python 2.6<br />
+	<i>Required modules</i>: numpy<br />
+	<i>Version</i>: 2010-08-28<br />
+</p>
+
+<h4>Program input</h4>
+
+<p>
+	The input is the file created by IMCORR, together with some information on
+	the used images.				
+</p>
+
+<p>
+	An example command line is:
+	<br />
+	<span style="display: block; font-style: italic; margin-left: 20px;">
+	imcorr2vectors.py par.txt
+	</span>
+	where par.txt is a parameter file with required input and output information. 
+	<br />Example:
+	<span style="display: block; font-style: italic; margin-left: 20px;">
+	11resize.out  // name of Imcorr file
+	<br />14.25  // cell size of analysed raster images
+	<br />536462.625 // x_min: images bottom-left x coordinate
+	<br />1776611.625 // y_max: images top-right y coordinate
+	<br />res.txt // output displacement vectors 
+	</span>
+</p>
+
+<h4>Program output</h4>
+
+<p>
+	The result is a text file with the original data converted in the geographic space.
+	For each displacement vector, the following information are provided:
+	<ol style="margin-left: 20px; font-style: italic;">
+		<li>px_j: reference chip center, x coordinate</li>
+		<li>px_i: reference chip center, y coordinate</li>
+		<li>x0: displacement vector start, x coordinate</li>
+		<li>y0: displacement vector start, y coordinate</li>
+		<li>x1: displacement vector end, x coordinate</li>
+		<li>y1: displacement vector end, y coordinate</li>
+		<li>dx: inferred displacement, x component</li>
+		<li>dy: inferred displacement, y component</li>
+		<li>x_err: estimated error, x component</li>
+		<li>y_err: estimated error, y component</li>
+		<li>magn_displ: magnitude of displacement vector</li>
+		<li>displ_dir: displacement vector orientation (0-360 &deg;)</li>
+		<li>corrstr: correlation strength (same as from IMCORR output)</li>
+		<li>resflg: result flag (same as from IMCORR output)</li>				
+	</ol>
+	<br />
+	This file can be directly imported in GIS softwares.
+</p>
+
+<h3>Vector-shapefile conversion</h3>	
+
+<p>
+	vectors2shapefile.py converts a 'vector' file, as created by the script <i">imcorr2vectors_01.py</i>,
+	into a point shapefile. All the original information are preserved.
+</p>	
+
+<h4>Implementation</h4>
+
+<p>		
+	<i>Language</i>: Python 2.6<br />
+	<i>Required modules</i>: ogr<br />
+	<i>Version</i>: 2010-08-28<br />
+</p>
+
+<h4>Program input</h4>
+
+<p>
+	The input is the file created by <i>imcorr2vectors.py</i>
+</p>
+
+<p>
+	An example command line is:
+	<br />
+	<span style="display: block; font-style: italic; margin-left: 20px;">
+	vectors2shapefile.py par.txt
+	</span>
+	where par.txt is a parameter file with required input and output information. 
+	<br />Example:
+	<ol style="margin-left: 20px; font-style: italic;">
+		<li>input_geovectors.out: text file (output of imcorr2geog.py/vectors_coherence.py)</li>
+		<li>out_shapefile: output displacement vectors (line shapefile)</li>				
+	</ol>
+</p>
+
+<h4>Program output</h4>
+
+<p>
+	A shapefile with the same information as the original 'vector' file:
+	<ol style="margin-left: 20px; font-style: italic;">
+		<li>px_j: reference chip center, x coordinate</li>
+		<li>px_i: reference chip center, y coordinate</li>
+		<li>x0: displacement vector start, x coordinate</li>
+		<li>y0: displacement vector start, y coordinate</li>
+		<li>x1: displacement vector end, x coordinate</li>
+		<li>y1: displacement vector end, y coordinate</li>
+		<li>dx: inferred displacement, x component</li>
+		<li>dy: inferred displacement, y component</li>
+		<li>x_err: estimated error, x component</li>
+		<li>y_err: estimated error, y component</li>
+		<li>magn_displ: magnitude of displacement vector</li>
+		<li>displ_dir: displacement vector orientation (0-360 &deg;)</li>
+		<li>corrstr: correlation strength (same as from IMCORR output)</li>
+		<li>resflg: result flag (same as from IMCORR output)</li>				
+	</ol>
+	<br />
+</p>
+
+
+<h3>Shapefile-vector conversion</h3>	
+
+<p>
+	shapefile2vectors.py converts a point shapefile into a 'vector' file. 
+	All the original information are preserved.
+</p>	
+
+<h4>Implementation</h4>
+
+<p>		
+	<i>Language</i>: Python 2.6<br />
+	<i>Required modules</i>: ogr<br />
+	<i>Version</i>: 2010-08-28<br />
+</p>
+
+<p>
+	An example command line is:
+	<span style="display: block; margin-left: 20px; font-style: italic;">
+		python shapefile2vectors.py vectors.shp vectors.txt				
+	</span>
+	where <em>vectors.shp</em> is the shapefile to convert and <em>vectors.txt</em> is the output 'vector' file.
+</p>
+
+<p>
+	Fields in original shapefile and converted 'vector' file are:
+	<ol style="margin-left: 20px; font-style: italic;">
+		<li>px_j: reference chip center, x coordinate</li>
+		<li>px_i: reference chip center, y coordinate</li>
+		<li>x0: displacement vector start, x coordinate</li>
+		<li>y0: displacement vector start, y coordinate</li>
+		<li>x1: displacement vector end, x coordinate</li>
+		<li>y1: displacement vector end, y coordinate</li>
+		<li>dx: inferred displacement, x component</li>
+		<li>dy: inferred displacement, y component</li>
+		<li>x_err: estimated error, x component</li>
+		<li>y_err: estimated error, y component</li>
+		<li>magn_displ: magnitude of displacement vector</li>
+		<li>displ_dir: displacement vector orientation (0-360 &deg;)</li>
+		<li>corrstr: correlation strength (same as from IMCORR output)</li>
+		<li>resflg: result flag (same as from IMCORR output)</li>				
+	</ol>
+</p>
+
+
+<h3>Flow vector coherence</h3>
+
+<p>
+	vectors_coherence.py calculates coherence in vector length or magnitude with respect to the neighbours, for a vector field.
+	The anomalous vectors could represent erroneous values in a vector field.
+	It was created to facilitate the cleaning of erroneous values in glacial flow data calculated with softwares such as IMCORR.
+</p>
+
+<h4>Implementation</h4>
+
+<p>		
+	<i>Language</i>: Python 2.6<br />
+	<i>Required modules</i>: Numpy<br />
+	<i>Version</i>: 2010-08-24<br />
+</p>
+
+<p>
+	An example command line is:
+	<span style="display: block; margin-left: 20px; font-style: italic;">
+		vectors_coherence.py param.txt				
+	</span>
+	where <em>param.txt</em> is a parameter file with required input and output information. 
+	<br />Example:
+	<span style="display: block; margin-left: 20px; font-style: italic;">
+		flow_vectors.txt  // name of input vector file
+		<br />result.txt // output vectors with flow coherence parameters				
+	</span>
+</p>
+
+<h4>Program input</h4>
+
+<p>
+	'Vector' files are originally created by the <i>imcorr2vectors.py</i> script or 
+	recreated by the <i>shapefile2vectors.py</i> script.
+	They are text files with a table format, whose fields store the values for the flow vectors:
+	<ol style="margin-left: 20px; font-style: italic;">
+		<li>px_j: reference chip center, x coordinate</li>
+		<li>px_i: reference chip center, y coordinate</li>
+		<li>x0: displacement vector start, x coordinate</li>
+		<li>y0: displacement vector start, y coordinate</li>
+		<li>x1: displacement vector end, x coordinate</li>
+		<li>y1: displacement vector end, y coordinate</li>
+		<li>dx: inferred displacement, x component</li>
+		<li>dy: inferred displacement, y component</li>
+		<li>x_err: estimated error, x component</li>
+		<li>y_err: estimated error, y component</li>
+		<li>magn_displ: magnitude of displacement vector</li>
+		<li>displ_dir: displacement vector orientation (0-360 &deg;)</li>
+		<li>corrstr: correlation strength (same as from IMCORR output)</li>
+		<li>resflg: result flag (same as from IMCORR output)</li>				
+	</ol>
+</p>		
+
+<h4>Program output</h4>
+
+The script output is a text file, similar to the input 'vector' file but with two additional fields,
+that store the differences in vector magnitude and vector orientation with respect to the mean of the 
+height nearest vectors (weighted according to their 'correlation strength').
+
+These two fields are named 'magn_diff' (magnitude difference) and 'ang_diff' (angular difference).
+The result can be imported and visualised in a GIS software, to choose the vectors with anomalies
+that suggest that they are errors.
+
+
 

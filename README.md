@@ -3,24 +3,18 @@ Processing of flow data with Python scripts
 
 This repo contains the Python scripts associated with the report: 
 
-Glacial flow analysis with open source tools: the case of the Reeves Glacier grounding zone, East Antarctica
+<b>Glacial flow analysis with open source tools: the case of the Reeves Glacier grounding zone, East Antarctica</b>
+<br />
 
 by Mauro Alberti (alberti.m65@gmail.com) and Debbie Biscaro (debbiemail@libero.it).
 
 First published August 8, 2011 in www.malg.eu/glacial_flows.php
 
-<br />
-
 Republished in GitHub, August 1, 2017.
 
-
-<p><span class="date">1</span> &nbsp;|&nbsp; Posted by <a href="mailto:alberti.m65@gmail.com">mauro</a></p>
-
-<br />
-
-<h2>Glacial flow analysis with open source tools: the case of the Reeves Glacier 
+<h1>Glacial flow analysis with open source tools: the case of the Reeves Glacier 
 	grounding zone, East Antarctica
-</h2>
+</h1>
 
 <p>
 	Mauro Alberti (<a href="mailto:alberti.m65@gmail.com">alberti.m65@gmail.com</a>), 
@@ -427,8 +421,10 @@ to the measurement of glacier velocity using satellite image data. Remote Sensin
 	<span style="display: block; font-style: italic; margin-left: 20px;">
 	imcorr2vectors.py par.txt
 	</span>
+	
 	where par.txt is a parameter file with required input and output information. 
 	<br />Example:
+	
 	<span style="display: block; font-style: italic; margin-left: 20px;">
 	11resize.out  // name of Imcorr file
 	<br />14.25  // cell size of analysed raster images
@@ -487,11 +483,14 @@ to the measurement of glacier velocity using satellite image data. Remote Sensin
 <p>
 	An example command line is:
 	<br />
+	
 	<span style="display: block; font-style: italic; margin-left: 20px;">
 	vectors2shapefile.py par.txt
 	</span>
+	
 	where par.txt is a parameter file with required input and output information. 
 	<br />Example:
+	
 	<ol style="margin-left: 20px; font-style: italic;">
 		<li>input_geovectors.out: text file (output of imcorr2geog.py/vectors_coherence.py)</li>
 		<li>out_shapefile: output displacement vectors (line shapefile)</li>				
@@ -539,9 +538,11 @@ to the measurement of glacier velocity using satellite image data. Remote Sensin
 
 <p>
 	An example command line is:
+	
 	<span style="display: block; margin-left: 20px; font-style: italic;">
 		python shapefile2vectors.py vectors.shp vectors.txt				
 	</span>
+	
 	where <em>vectors.shp</em> is the shapefile to convert and <em>vectors.txt</em> is the output 'vector' file.
 </p>
 
@@ -584,11 +585,15 @@ to the measurement of glacier velocity using satellite image data. Remote Sensin
 
 <p>
 	An example command line is:
+	
 	<span style="display: block; margin-left: 20px; font-style: italic;">
 		vectors_coherence.py param.txt				
 	</span>
+	
 	where <em>param.txt</em> is a parameter file with required input and output information. 
+	
 	<br />Example:
+	
 	<span style="display: block; margin-left: 20px; font-style: italic;">
 		flow_vectors.txt  // name of input vector file
 		<br />result.txt // output vectors with flow coherence parameters				

@@ -396,227 +396,224 @@ to the measurement of glacier velocity using satellite image data. Remote Sensin
 <h3>IMCORR output conversion</h3>	
 
 <p>
-	imcorr2vectors.py converts an IMCORR file from a graphic, gridded space into a 'vector' file, i.e., a tabular, text file 
-	with points and field values in the geographic space.				
+imcorr2vectors.py converts an IMCORR file from a graphic, gridded space into a 'vector' file, i.e., a tabular, text file 
+with points and field values in the geographic space.				
 </p>	
 
 <h4>Implementation</h4>
 
 <p>		
-	<i>Language</i>: Python 2.6<br />
-	<i>Required modules</i>: numpy<br />
-	<i>Version</i>: 2010-08-28<br />
+<i>Language</i>: Python 2.6<br />
+<i>Required modules</i>: numpy<br />
+<i>Version</i>: 2010-08-28<br />
 </p>
 
 <h4>Program input</h4>
 
-<p>
-	The input is the file created by IMCORR, together with some information on
-	the used images.				
-</p>
+The input is the file created by IMCORR, together with some information on
+the used images.				
 
-<p>
-	An example command line is:
 
-	<i>
-	imcorr2vectors.py par.txt
-	</i>
-	
-	where par.txt is a parameter file with required input and output information. 
-	
-	Example:
-	
-	<i>
-	resize.out  // name of Imcorr file
-	<br />14.25  // cell size of analysed raster images
-	<br />536462.625 // x_min: images bottom-left x coordinate
-	<br />1776611.625 // y_max: images top-right y coordinate
-	<br />res.txt // output displacement vectors 
-	</i>
-</p>
+An example command line is:
+
+imcorr2vectors.py par.txt
+
+where par.txt is a parameter file with required input and output information. 
+
+Example:
+
+resize.out  // name of Imcorr file
+
+14.25  // cell size of analysed raster images
+
+536462.625 // x_min: images bottom-left x coordinate
+
+1776611.625 // y_max: images top-right y coordinate
+
+res.txt // output displacement vectors 
+
 
 <h4>Program output</h4>
 
 <p>
-	The result is a text file with the original data converted in the geographic space.
-	For each displacement vector, the following information are provided:
-	<ol style="margin-left: 20px; font-style: italic;">
-		<li>px_j: reference chip center, x coordinate</li>
-		<li>px_i: reference chip center, y coordinate</li>
-		<li>x0: displacement vector start, x coordinate</li>
-		<li>y0: displacement vector start, y coordinate</li>
-		<li>x1: displacement vector end, x coordinate</li>
-		<li>y1: displacement vector end, y coordinate</li>
-		<li>dx: inferred displacement, x component</li>
-		<li>dy: inferred displacement, y component</li>
-		<li>x_err: estimated error, x component</li>
-		<li>y_err: estimated error, y component</li>
-		<li>magn_displ: magnitude of displacement vector</li>
-		<li>displ_dir: displacement vector orientation (0-360 &deg;)</li>
-		<li>corrstr: correlation strength (same as from IMCORR output)</li>
-		<li>resflg: result flag (same as from IMCORR output)</li>				
-	</ol>
-	<br />
-	This file can be directly imported in GIS softwares.
+The result is a text file with the original data converted in the geographic space.
+For each displacement vector, the following information are provided:
+<ol style="margin-left: 20px; font-style: italic;">
+<li>px_j: reference chip center, x coordinate</li>
+<li>px_i: reference chip center, y coordinate</li>
+<li>x0: displacement vector start, x coordinate</li>
+<li>y0: displacement vector start, y coordinate</li>
+<li>x1: displacement vector end, x coordinate</li>
+<li>y1: displacement vector end, y coordinate</li>
+<li>dx: inferred displacement, x component</li>
+<li>dy: inferred displacement, y component</li>
+<li>x_err: estimated error, x component</li>
+<li>y_err: estimated error, y component</li>
+<li>magn_displ: magnitude of displacement vector</li>
+<li>displ_dir: displacement vector orientation (0-360 &deg;)</li>
+<li>corrstr: correlation strength (same as from IMCORR output)</li>
+<li>resflg: result flag (same as from IMCORR output)</li>				
+</ol>
+
+This file can be directly imported in GIS softwares.
 </p>
 
 <h3>Vector-shapefile conversion</h3>	
 
 <p>
-	vectors2shapefile.py converts a 'vector' file, as created by the script <i">imcorr2vectors_01.py</i>,
-	into a point shapefile. All the original information are preserved.
+vectors2shapefile.py converts a 'vector' file, as created by the script <i">imcorr2vectors_01.py</i>,
+into a point shapefile. All the original information are preserved.
 </p>	
 
 <h4>Implementation</h4>
 
 <p>		
-	<i>Language</i>: Python 2.6<br />
-	<i>Required modules</i>: ogr<br />
-	<i>Version</i>: 2010-08-28<br />
+<i>Language</i>: Python 2.6<br />
+<i>Required modules</i>: ogr<br />
+<i>Version</i>: 2010-08-28<br />
 </p>
 
 <h4>Program input</h4>
 
 <p>
-	The input is the file created by <i>imcorr2vectors.py</i>
+The input is the file created by <i>imcorr2vectors.py</i>
 </p>
 
 <p>
-	An example command line is:
+An example command line is:
 
-	<i>	vectors2shapefile.py par.txt	</i>
-	
-	where par.txt is a parameter file with required input and output information. 
-	
-	Example:
-	
-	<ol>
-		<li>input_geovectors.out: text file (output of imcorr2geog.py/vectors_coherence.py)</li>
-		<li>out_shapefile: output displacement vectors (line shapefile)</li>				
-	</ol>
+vectors2shapefile.py par.txt
+
+where par.txt is a parameter file with required input and output information. 
+
+Example:
+
+input_geovectors.out: text file (output of imcorr2geog.py/vectors_coherence.py)
+out_shapefile: output displacement vectors (line shapefile)				
+
 </p>
 
 <h4>Program output</h4>
 
 <p>
-	A shapefile with the same information as the original 'vector' file:
-	<ol style="margin-left: 20px; font-style: italic;">
-		<li>px_j: reference chip center, x coordinate</li>
-		<li>px_i: reference chip center, y coordinate</li>
-		<li>x0: displacement vector start, x coordinate</li>
-		<li>y0: displacement vector start, y coordinate</li>
-		<li>x1: displacement vector end, x coordinate</li>
-		<li>y1: displacement vector end, y coordinate</li>
-		<li>dx: inferred displacement, x component</li>
-		<li>dy: inferred displacement, y component</li>
-		<li>x_err: estimated error, x component</li>
-		<li>y_err: estimated error, y component</li>
-		<li>magn_displ: magnitude of displacement vector</li>
-		<li>displ_dir: displacement vector orientation (0-360 &deg;)</li>
-		<li>corrstr: correlation strength (same as from IMCORR output)</li>
-		<li>resflg: result flag (same as from IMCORR output)</li>				
-	</ol>
-	<br />
+A shapefile with the same information as the original 'vector' file:
+<ol style="margin-left: 20px; font-style: italic;">
+<li>px_j: reference chip center, x coordinate</li>
+<li>px_i: reference chip center, y coordinate</li>
+<li>x0: displacement vector start, x coordinate</li>
+<li>y0: displacement vector start, y coordinate</li>
+<li>x1: displacement vector end, x coordinate</li>
+<li>y1: displacement vector end, y coordinate</li>
+<li>dx: inferred displacement, x component</li>
+<li>dy: inferred displacement, y component</li>
+<li>x_err: estimated error, x component</li>
+<li>y_err: estimated error, y component</li>
+<li>magn_displ: magnitude of displacement vector</li>
+<li>displ_dir: displacement vector orientation (0-360 &deg;)</li>
+<li>corrstr: correlation strength (same as from IMCORR output)</li>
+<li>resflg: result flag (same as from IMCORR output)</li>				
+</ol>
+<br />
 </p>
 
 
 <h3>Shapefile-vector conversion</h3>	
 
 <p>
-	shapefile2vectors.py converts a point shapefile into a 'vector' file. 
-	All the original information are preserved.
+shapefile2vectors.py converts a point shapefile into a 'vector' file. 
+All the original information are preserved.
 </p>	
 
 <h4>Implementation</h4>
 
 <p>		
-	<i>Language</i>: Python 2.6<br />
-	<i>Required modules</i>: ogr<br />
-	<i>Version</i>: 2010-08-28<br />
+<i>Language</i>: Python 2.6<br />
+<i>Required modules</i>: ogr<br />
+<i>Version</i>: 2010-08-28<br />
 </p>
 
 <p>
-	An example command line is:
-	
-	<i>		python shapefile2vectors.py vectors.shp vectors.txt	</i>
-	
-	where <em>vectors.shp</em> is the shapefile to convert and <em>vectors.txt</em> is the output 'vector' file.
+An example command line is:
+
+<i>		python shapefile2vectors.py vectors.shp vectors.txt	</i>
+
+where <em>vectors.shp</em> is the shapefile to convert and <em>vectors.txt</em> is the output 'vector' file.
 </p>
 
 <p>
-	Fields in original shapefile and converted 'vector' file are:
-	<ol style="margin-left: 20px; font-style: italic;">
-		<li>px_j: reference chip center, x coordinate</li>
-		<li>px_i: reference chip center, y coordinate</li>
-		<li>x0: displacement vector start, x coordinate</li>
-		<li>y0: displacement vector start, y coordinate</li>
-		<li>x1: displacement vector end, x coordinate</li>
-		<li>y1: displacement vector end, y coordinate</li>
-		<li>dx: inferred displacement, x component</li>
-		<li>dy: inferred displacement, y component</li>
-		<li>x_err: estimated error, x component</li>
-		<li>y_err: estimated error, y component</li>
-		<li>magn_displ: magnitude of displacement vector</li>
-		<li>displ_dir: displacement vector orientation (0-360 &deg;)</li>
-		<li>corrstr: correlation strength (same as from IMCORR output)</li>
-		<li>resflg: result flag (same as from IMCORR output)</li>				
-	</ol>
+Fields in original shapefile and converted 'vector' file are:
+<ol style="margin-left: 20px; font-style: italic;">
+<li>px_j: reference chip center, x coordinate</li>
+<li>px_i: reference chip center, y coordinate</li>
+<li>x0: displacement vector start, x coordinate</li>
+<li>y0: displacement vector start, y coordinate</li>
+<li>x1: displacement vector end, x coordinate</li>
+<li>y1: displacement vector end, y coordinate</li>
+<li>dx: inferred displacement, x component</li>
+<li>dy: inferred displacement, y component</li>
+<li>x_err: estimated error, x component</li>
+<li>y_err: estimated error, y component</li>
+<li>magn_displ: magnitude of displacement vector</li>
+<li>displ_dir: displacement vector orientation (0-360 &deg;)</li>
+<li>corrstr: correlation strength (same as from IMCORR output)</li>
+<li>resflg: result flag (same as from IMCORR output)</li>				
+</ol>
 </p>
 
 
 <h3>Flow vector coherence</h3>
 
 <p>
-	vectors_coherence.py calculates coherence in vector length or magnitude with respect to the neighbours, for a vector field.
-	The anomalous vectors could represent erroneous values in a vector field.
-	It was created to facilitate the cleaning of erroneous values in glacial flow data calculated with softwares such as IMCORR.
+vectors_coherence.py calculates coherence in vector length or magnitude with respect to the neighbours, for a vector field.
+The anomalous vectors could represent erroneous values in a vector field.
+It was created to facilitate the cleaning of erroneous values in glacial flow data calculated with softwares such as IMCORR.
 </p>
 
 <h4>Implementation</h4>
 
 <p>		
-	<i>Language</i>: Python 2.6<br />
-	<i>Required modules</i>: Numpy<br />
-	<i>Version</i>: 2010-08-24<br />
+<i>Language</i>: Python 2.6<br />
+<i>Required modules</i>: Numpy<br />
+<i>Version</i>: 2010-08-24<br />
 </p>
 
 <p>
-	An example command line is:
-	
-	<i>		vectors_coherence.py param.txt	</i>
-	
-	where <em>param.txt</em> is a parameter file with required input and output information. 
-	
-	Example:
-	
-	<i>		flow_vectors.txt  // name of input vector file</i>
-	
-	<i>	result.txt // output vectors with flow coherence parameters	</i>			
-	
+An example command line is:
+
+<i>		vectors_coherence.py param.txt	</i>
+
+where <em>param.txt</em> is a parameter file with required input and output information. 
+
+Example:
+
+<i>		flow_vectors.txt  // name of input vector file</i>
+
+<i>	result.txt // output vectors with flow coherence parameters	</i>			
+
 </p>
 
 <h4>Program input</h4>
 
 <p>
-	'Vector' files are originally created by the <i>imcorr2vectors.py</i> script or 
-	recreated by the <i>shapefile2vectors.py</i> script.
-	They are text files with a table format, whose fields store the values for the flow vectors:
-	<ol style="margin-left: 20px; font-style: italic;">
-		<li>px_j: reference chip center, x coordinate</li>
-		<li>px_i: reference chip center, y coordinate</li>
-		<li>x0: displacement vector start, x coordinate</li>
-		<li>y0: displacement vector start, y coordinate</li>
-		<li>x1: displacement vector end, x coordinate</li>
-		<li>y1: displacement vector end, y coordinate</li>
-		<li>dx: inferred displacement, x component</li>
-		<li>dy: inferred displacement, y component</li>
-		<li>x_err: estimated error, x component</li>
-		<li>y_err: estimated error, y component</li>
-		<li>magn_displ: magnitude of displacement vector</li>
-		<li>displ_dir: displacement vector orientation (0-360 &deg;)</li>
-		<li>corrstr: correlation strength (same as from IMCORR output)</li>
-		<li>resflg: result flag (same as from IMCORR output)</li>				
-	</ol>
+'Vector' files are originally created by the <i>imcorr2vectors.py</i> script or 
+recreated by the <i>shapefile2vectors.py</i> script.
+They are text files with a table format, whose fields store the values for the flow vectors:
+<ol style="margin-left: 20px; font-style: italic;">
+<li>px_j: reference chip center, x coordinate</li>
+<li>px_i: reference chip center, y coordinate</li>
+<li>x0: displacement vector start, x coordinate</li>
+<li>y0: displacement vector start, y coordinate</li>
+<li>x1: displacement vector end, x coordinate</li>
+<li>y1: displacement vector end, y coordinate</li>
+<li>dx: inferred displacement, x component</li>
+<li>dy: inferred displacement, y component</li>
+<li>x_err: estimated error, x component</li>
+<li>y_err: estimated error, y component</li>
+<li>magn_displ: magnitude of displacement vector</li>
+<li>displ_dir: displacement vector orientation (0-360 &deg;)</li>
+<li>corrstr: correlation strength (same as from IMCORR output)</li>
+<li>resflg: result flag (same as from IMCORR output)</li>				
+</ol>
 </p>		
 
 <h4>Program output</h4>
